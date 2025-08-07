@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Style Advisor - 設計原型預覽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #FAFAFA 0%, #F3E8FF 100%);
+            overflow-x: hidden;
+        }
+
+        /* 色彩變數 */
+        :root {
+            --primary-purple: #8B5CF6;
+            --primary-pink: #F472B6;
+            --gradient-main: linear-gradient(135deg, #8B5CF6 0%, #F472B6 100%);
+            --gradient-light: linear-gradient(135deg, #A78BFA 0%, #FB7185 100%);
+            --bg-card: rgba(255,255,255,0.8);
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-light);
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle-1 {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            right: 10%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(-10px) rotate(240deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content Area */
+        .main-content {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .input-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .input-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .input-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            margin-right: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .upload-zone {
+            width: 100%;
+            height: 200px;
+            border: 2px dashed var(--primary-purple);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(244, 114, 182, 0.05) 100%);
+        }
+
+        .upload-zone:hover {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(244, 114, 182, 0.1) 100%);
+            border-color: var(--primary-pink);
+        }
+
+        .upload-text {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Results Section */
+        .results-section {
+            margin-top: 4rem;
+            opacity: 0;
+            animation: slideInFromBottom 1s ease-out 1s both;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+
+        .ai-result-image {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+        }
+
+        .result-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-brand {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .generate-button {
+            width: 100%;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+            margin-top: 2rem;
+        }
+
+        .generate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .feature-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .login-button {
+            width: 100%;
+            background: var(--gradient-main);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .login-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-elements">
+            <div class="floating-circle circle-1"></div>
+            <div class="floating-circle circle-2"></div>
+            <div class="floating-circle circle-3"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">AI Style Advisor</h1>
+            <p class="hero-subtitle">你的個人穿搭顧問，用AI打造完美造型</p>
+            <button class="cta-button" onclick="showLogin()">開始探索風格 ✨</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h2 class="section-title">讓AI為你打造專屬穿搭</h2>
+        
+        <div class="feature-grid">
+            <!-- 場合描述輸入 -->
+            <div class="input-section">
+                <label class="input-label">
+                    <span class="input-icon">🎭</span>
+                    描述你的場合
+                </label>
+                <textarea 
+                    class="text-input" 
+                    placeholder="例如：我要參加戶外草地婚禮，氣溫約25度..." 
+                    rows="4"
+                ></textarea>
+            </div>
+
+            <!-- 照片上傳 -->
+            <div class="input-section">
+                <label class="input-label">
+                    <span class="input-icon">📸</span>
+                    上傳你的照片
+                </label>
+                <div class="upload-zone" onclick="triggerFileUpload()">
+                    <div style="font-size: 3rem;">📷</div>
+                    <div class="upload-text">
+                        <strong>點擊上傳照片</strong><br>
+                        或拖拽圖片到此區域
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="generate-button" onclick="showResults()">
+            ✨ 生成AI穿搭建議 ✨
+        </button>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <h3 class="section-title">為你量身打造的穿搭方案</h3>
+            
+            <div class="results-grid">
+                <!-- AI生成穿搭圖 -->
+                <div class="ai-result-image">
+                    <div class="result-placeholder">
+                        🎨 AI生成穿搭效果圖<br>
+                        <small style="margin-top: 0.5rem; display: block;">清新戶外婚禮造型</small>
+                    </div>
+                </div>
+
+                <!-- 商品推薦 -->
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">👗 洋裝圖片</div>
+                        <div class="product-info">
+                            <div class="product-brand">ZARA</div>
+                            <div class="product-name">清新花卉印花洋裝</div>
+                            <div class="product-price">NT$ 1,290</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">👠 鞋子圖片</div>
+                        <div class="product-info">
+                            <div class="product-brand">Charles & Keith</div>
+                            <div class="product-name">米色編織涼鞋</div>
+                            <div class="product-price">NT$ 990</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">👜 包包圖片</div>
+                        <div class="product-info">
+                            <div class="product-brand">Mango</div>
+                            <div class="product-name">小巧藤編手提包</div>
+                            <div class="product-price">NT$ 690</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">🕶️ 配件圖片</div>
+                        <div class="product-info">
+                            <div class="product-brand">H&M</div>
+                            <div class="product-name">復古圓框太陽眼鏡</div>
+                            <div class="product-price">NT$ 390</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <h3 class="modal-title">歡迎使用 AI Style Advisor</h3>
+            <form>
+                <div class="form-group">
+                    <label class="form-label">電子郵件</label>
+                    <input type="email" class="form-input" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">密碼</label>
+                    <input type="password" class="form-input" placeholder="請輸入密碼">
+                </div>
+                <button type="button" class="login-button" onclick="hideLogin()">開始我的風格之旅</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showLogin() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function hideLogin() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function showResults() {
+            const resultsSection = document.getElementById('resultsSection');
+            resultsSection.style.opacity = '1';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function triggerFileUpload() {
+            // 模擬檔案上傳
+            alert('這裡會觸發檔案選擇器 📸');
+        }
+
+        // 點擊模態框外部關閉
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideLogin();
+            }
+        });
+
+        // 添加一些互動效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 產品卡片點擊效果
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+
+            // 輸入框聚焦效果
+            const inputs = document.querySelectorAll('.text-input, .form-input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

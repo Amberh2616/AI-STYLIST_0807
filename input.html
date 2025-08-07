@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>穿搭需求輸入 - AI Style Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="bg-pattern"></div>
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+
+        <!-- 導航欄 -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="logo">✨ AI Style Advisor</div>
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="nav-link">← 返回首頁</a></li>
+                        <li><span class="text-primary font-semibold">步驟 1/4</span></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要內容 -->
+        <div class="pt-24 pb-20 min-h-screen">
+            <div class="container container-narrow">
+                <div class="text-center mb-xl">
+                    <h1 class="title-section mb-md">告訴我們你的穿搭需求</h1>
+                    <p class="text-secondary text-lg">描述你要參加的場合，上傳你的照片，讓AI為你量身打造完美穿搭</p>
+                </div>
+
+                <!-- 進度條 -->
+                <div class="mb-xl">
+                    <div class="flex justify-between items-center mb-sm text-sm text-secondary">
+                        <span>場合描述</span>
+                        <span>25%</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: rgba(139, 92, 246, 0.2); border-radius: 4px;">
+                        <div style="width: 25%; height: 100%; background: var(--gradient-main); border-radius: 4px; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-2 gap-8">
+                    <!-- 場合描述 -->
+                    <div class="card slide-in-left">
+                        <div class="card-header">
+                            <h3 class="title-card flex items-center gap-2">
+                                🎭 描述你的場合
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">場合類型</label>
+                                <select class="form-input" id="occasionType">
+                                    <option value="">請選擇場合類型</option>
+                                    <option value="wedding">婚禮</option>
+                                    <option value="business">商務會議</option>
+                                    <option value="casual">休閒聚會</option>
+                                    <option value="date">約會</option>
+                                    <option value="party">派對</option>
+                                    <option value="interview">面試</option>
+                                    <option value="travel">旅遊</option>
+                                    <option value="formal">正式場合</option>
+                                    <option value="sports">運動活動</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">詳細描述</label>
+                                <textarea 
+                                    class="form-textarea" 
+                                    placeholder="例如：我要參加戶外草地婚禮，氣溫約25度，下午舉行，希望看起來優雅但不會太正式..."
+                                    id="occasionDescription"
+                                    rows="4"
+                                ></textarea>
+                            </div>
+
+                            <!-- 快速選項 -->
+                            <div class="mb-md">
+                                <label class="form-label">快速場合模板</label>
+                                <div class="grid grid-2 gap-2">
+                                    <button class="btn btn-secondary text-sm" onclick="fillTemplate('wedding')">
+                                        💒 戶外婚禮
+                                    </button>
+                                    <button class="btn btn-secondary text-sm" onclick="fillTemplate('business')">
+                                        💼 商務會議
+                                    </button>
+                                    <button class="btn btn-secondary text-sm" onclick="fillTemplate('date')">
+                                        💕 浪漫約會
+                                    </button>
+                                    <button class="btn btn-secondary text-sm" onclick="fillTemplate('interview')">
+                                        🎯 工作面試
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 天氣和預算 -->
+                            <div class="grid grid-2 gap-4">
+                                <div class="form-group">
+                                    <label class="form-label">氣溫 (°C)</label>
+                                    <input type="number" class="form-input" placeholder="25" id="temperature">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">預算上限</label>
+                                    <select class="form-input" id="budget">
+                                        <option value="">不限</option>
+                                        <option value="2000">NT$ 2,000以下</option>
+                                        <option value="5000">NT$ 5,000以下</option>
+                                        <option value="10000">NT$ 10,000以下</option>
+                                        <option value="20000">NT$ 20,000以下</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 照片上傳 -->
+                    <div class="card slide-in-right">
+                        <div class="card-header">
+                            <h3 class="title-card flex items-center gap-2">
+                                📸 上傳你的照片
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="upload-zone" onclick="triggerFileUpload()" id="uploadZone">
+                                <div class="upload-icon">📷</div>
+                                <div class="upload-text">
+                                    <strong>點擊上傳照片</strong><br>
+                                    或拖拽圖片到此區域<br>
+                                    <small class="text-light">支援 JPG、PNG，建議全身照</small>
+                                </div>
+                            </div>
+                            <input type="file" id="photoInput" accept="image/*" style="display: none;" onchange="handleFileUpload(event)">
+                            
+                            <!-- 照片預覽 -->
+                            <div id="photoPreview" class="hidden mt-md">
+                                <img id="previewImage" src="" alt="預覽" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-md);">
+                                <div class="flex justify-between items-center mt-sm">
+                                    <span class="text-sm text-secondary" id="fileName"></span>
+                                    <button class="btn btn-secondary text-sm" onclick="removePhoto()">
+                                        🗑️ 移除
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 照片要求說明 -->
+                            <div class="mt-md p-4 rounded-lg" style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid var(--primary-purple);">
+                                <h4 class="font-semibold mb-sm text-sm">📋 照片建議</h4>
+                                <ul class="text-sm text-secondary space-y-1">
+                                    <li>• 建議上傳全身照片，以便AI分析身形比例</li>
+                                    <li>• 照片光線充足，姿勢自然</li>
+                                    <li>• 穿著簡單服裝，避免複雜圖案</li>
+                                    <li>• 我們會保護您的隱私，照片僅用於分析</li>
+                                </ul>
+                            </div>
+
+                            <!-- 可選：風格偏好 -->
+                            <div class="mt-lg">
+                                <label class="form-label">風格偏好 (可選)</label>
+                                <div class="grid grid-2 gap-2">
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" value="elegant" class="style-preference"> 優雅
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" value="casual" class="style-preference"> 休閒
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" value="modern" class="style-preference"> 現代
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" value="classic" class="style-preference"> 經典
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" value="trendy" class="style-preference"> 時尚
+                                    </label>
+                                    <label class="flex items-center gap-2 text-sm">
+                                        <input type="checkbox" value="comfortable" class="style-preference"> 舒適
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作按鈕 -->
+                <div class="flex justify-between items-center mt-xl">
+                    <button class="btn btn-secondary" onclick="goBack()">
+                        ← 返回首頁
+                    </button>
+                    <button class="btn btn-primary btn-lg" onclick="generateOutfits()" id="generateBtn" disabled>
+                        ✨ 生成穿搭建議 (3-5秒)
+                    </button>
+                </div>
+
+                <!-- 提示信息 -->
+                <div class="text-center mt-lg">
+                    <p class="text-sm text-secondary">
+                        我們的AI會分析你的需求，生成3-5個專屬穿搭方案 🎨
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 場合模板
+        const templates = {
+            wedding: {
+                type: 'wedding',
+                description: '我要參加戶外草地婚禮，下午舉行，希望看起來優雅得體但不搶風頭，需要考慮在草地上行走方便。',
+                temperature: 25
+            },
+            business: {
+                type: 'business',
+                description: '參加重要的商務會議，需要展現專業形象，但不要過於正式，希望在保持專業的同時展現個人風格。',
+                temperature: 22
+            },
+            date: {
+                type: 'date',
+                description: '晚餐約會，在有情調的餐廳，希望看起來迷人優雅，既不過於正式也不太隨便。',
+                temperature: 20
+            },
+            interview: {
+                type: 'interview',
+                description: '求職面試，需要給面試官留下專業、可靠的印象，同時展現個人特色和自信。',
+                temperature: 23
+            }
+        };
+
+        // 填充模板
+        function fillTemplate(templateKey) {
+            const template = templates[templateKey];
+            if (template) {
+                document.getElementById('occasionType').value = template.type;
+                document.getElementById('occasionDescription').value = template.description;
+                document.getElementById('temperature').value = template.temperature;
+                checkFormCompletion();
+            }
+        }
+
+        // 檔案上傳
+        function triggerFileUpload() {
+            document.getElementById('photoInput').click();
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('previewImage').src = e.target.result;
+                        document.getElementById('fileName').textContent = file.name;
+                        document.getElementById('photoPreview').classList.remove('hidden');
+                        document.getElementById('uploadZone').style.display = 'none';
+                        checkFormCompletion();
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('請上傳圖片檔案（JPG、PNG等）');
+                }
+            }
+        }
+
+        function removePhoto() {
+            document.getElementById('photoPreview').classList.add('hidden');
+            document.getElementById('uploadZone').style.display = 'flex';
+            document.getElementById('photoInput').value = '';
+            checkFormCompletion();
+        }
+
+        // 檢查表單完整性
+        function checkFormCompletion() {
+            const occasionType = document.getElementById('occasionType').value;
+            const description = document.getElementById('occasionDescription').value;
+            const hasPhoto = !document.getElementById('photoPreview').classList.contains('hidden');
+            
+            const isComplete = occasionType && description.length > 10 && hasPhoto;
+            document.getElementById('generateBtn').disabled = !isComplete;
+            
+            if (isComplete) {
+                document.getElementById('generateBtn').classList.remove('opacity-50');
+                document.getElementById('generateBtn').style.opacity = '1';
+            } else {
+                document.getElementById('generateBtn').style.opacity = '0.5';
+            }
+        }
+
+        // 生成穿搭
+        function generateOutfits() {
+            const occasionType = document.getElementById('occasionType').value;
+            const description = document.getElementById('occasionDescription').value;
+            const temperature = document.getElementById('temperature').value;
+            const budget = document.getElementById('budget').value;
+            
+            if (!occasionType || !description) {
+                alert('請完整填寫場合資訊');
+                return;
+            }
+            
+            if (document.getElementById('photoPreview').classList.contains('hidden')) {
+                alert('請上傳照片以便AI分析');
+                return;
+            }
+
+            // 收集風格偏好
+            const preferences = Array.from(document.querySelectorAll('.style-preference:checked'))
+                .map(cb => cb.value);
+
+            // 儲存資料到 localStorage
+            const inputData = {
+                occasionType,
+                description,
+                temperature,
+                budget,
+                preferences,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('stylingInput', JSON.stringify(inputData));
+            
+            // 跳轉到Loading頁面
+            window.location.href = 'loading.html';
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        // 表單驗證監聽
+        document.addEventListener('DOMContentLoaded', function() {
+            // 監聽表單變化
+            ['occasionType', 'occasionDescription'].forEach(id => {
+                document.getElementById(id).addEventListener('input', checkFormCompletion);
+                document.getElementById(id).addEventListener('change', checkFormCompletion);
+            });
+
+            // 初始檢查
+            checkFormCompletion();
+
+            // 拖拽上傳支持
+            const uploadZone = document.getElementById('uploadZone');
+            
+            uploadZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadZone.style.background = 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(244, 114, 182, 0.2) 100%)';
+            });
+            
+            uploadZone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                uploadZone.style.background = 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(244, 114, 182, 0.05) 100%)';
+            });
+            
+            uploadZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadZone.style.background = 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(244, 114, 182, 0.05) 100%)';
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type.startsWith('image/')) {
+                        const event = { target: { files: [file] } };
+                        handleFileUpload(event);
+                    } else {
+                        alert('請上傳圖片檔案');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

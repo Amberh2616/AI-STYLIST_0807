@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>穿搭詳情與購物 - AI Style Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="bg-pattern"></div>
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+
+        <!-- 導航欄 -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="logo">✨ AI Style Advisor</div>
+                    <ul class="nav-links">
+                        <li><a href="results.html" class="nav-link">← 返回方案選擇</a></li>
+                        <li><span class="text-primary font-semibold">步驟 4/4 - 商品詳情</span></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要內容 -->
+        <div class="pt-24 pb-20">
+            <div class="container">
+                <!-- 頁面標題 -->
+                <div class="text-center mb-xl">
+                    <h1 class="title-section mb-md" id="outfitTitle">優雅經典穿搭方案</h1>
+                    <p class="text-secondary text-lg">詳細商品清單與最優價格比較</p>
+                </div>
+
+                <!-- 進度條 -->
+                <div class="mb-xl container-narrow">
+                    <div class="flex justify-between items-center mb-sm text-sm text-secondary">
+                        <span>購物清單</span>
+                        <span>100% 完成</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: rgba(139, 92, 246, 0.2); border-radius: 4px;">
+                        <div style="width: 100%; height: 100%; background: var(--gradient-main); border-radius: 4px;"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-2 gap-8">
+                    <!-- 左側：穿搭效果圖 -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="title-card">🎨 AI生成穿搭效果圖</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="outfit-preview">
+                                <div class="preview-image">
+                                    <div class="preview-placeholder" id="previewPlaceholder">
+                                        👗<br>
+                                        <small>AI生成的穿搭效果圖</small>
+                                    </div>
+                                </div>
+                                
+                                <!-- 穿搭分析 -->
+                                <div class="outfit-analysis mt-lg">
+                                    <h4 class="font-semibold mb-md">🔍 AI穿搭分析</h4>
+                                    <div class="analysis-content" id="analysisContent">
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">適合場合：</span>
+                                            <span class="analysis-value">戶外婚禮、下午茶聚會</span>
+                                        </div>
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">風格特色：</span>
+                                            <span class="analysis-value">優雅浪漫、不搶風頭</span>
+                                        </div>
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">身形建議：</span>
+                                            <span class="analysis-value">A字版型修飾腰線</span>
+                                        </div>
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">材質推薦：</span>
+                                            <span class="analysis-value">透氣棉質、防皺處理</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 天氣建議 -->
+                                <div class="weather-suggestion mt-lg">
+                                    <h4 class="font-semibold mb-md">☀️ 天氣穿搭建議</h4>
+                                    <div class="weather-content">
+                                        <div class="weather-info">
+                                            <span class="weather-temp">25°C</span>
+                                            <span class="weather-desc">晴朗微風</span>
+                                        </div>
+                                        <p class="weather-advice text-sm text-secondary">
+                                            氣溫舒適，建議選擇透氣材質。戶外場地建議攜帶輕薄外套以防晚間轉涼。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右側：商品清單 -->
+                    <div>
+                        <h3 class="title-card mb-lg">🛍️ 商品清單與比價</h3>
+                        
+                        <!-- 商品列表 -->
+                        <div class="product-list space-y-4" id="productList">
+                            <!-- 商品1：洋裝 -->
+                            <div class="product-detail-card">
+                                <div class="product-header">
+                                    <div class="product-image">
+                                        👗
+                                    </div>
+                                    <div class="product-basic-info">
+                                        <h4 class="product-name">清新花卉印花洋裝</h4>
+                                        <p class="product-brand">ZARA</p>
+                                        <div class="product-tags">
+                                            <span class="tag">透氣</span>
+                                            <span class="tag">修身</span>
+                                            <span class="tag">A字版型</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-comparison-section">
+                                    <div class="best-price">
+                                        <div class="best-price-badge">🏆 最佳價格</div>
+                                        <div class="current-price">NT$ 1,190</div>
+                                        <div class="original-price">原價 NT$ 1,490</div>
+                                    </div>
+                                    
+                                    <div class="platform-prices">
+                                        <div class="platform-price best">
+                                            <div class="platform-info">
+                                                <div class="platform-logo shopee"></div>
+                                                <span>蝦皮購物</span>
+                                            </div>
+                                            <span class="price">NT$ 1,190</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo momo"></div>
+                                                <span>momo購物</span>
+                                            </div>
+                                            <span class="price">NT$ 1,390</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo pchome"></div>
+                                                <span>PChome</span>
+                                            </div>
+                                            <span class="price">NT$ 1,450</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary w-full mt-md" onclick="addToCart('dress')">
+                                        🛒 加入購物車
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 商品2：涼鞋 -->
+                            <div class="product-detail-card">
+                                <div class="product-header">
+                                    <div class="product-image">
+                                        👠
+                                    </div>
+                                    <div class="product-basic-info">
+                                        <h4 class="product-name">米色編織涼鞋</h4>
+                                        <p class="product-brand">Charles & Keith</p>
+                                        <div class="product-tags">
+                                            <span class="tag">舒適</span>
+                                            <span class="tag">防滑</span>
+                                            <span class="tag">中跟</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-comparison-section">
+                                    <div class="best-price">
+                                        <div class="best-price-badge">🏆 最佳價格</div>
+                                        <div class="current-price">NT$ 890</div>
+                                        <div class="original-price">原價 NT$ 1,190</div>
+                                    </div>
+                                    
+                                    <div class="platform-prices">
+                                        <div class="platform-price best">
+                                            <div class="platform-info">
+                                                <div class="platform-logo pchome"></div>
+                                                <span>PChome</span>
+                                            </div>
+                                            <span class="price">NT$ 890</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo momo"></div>
+                                                <span>momo購物</span>
+                                            </div>
+                                            <span class="price">NT$ 990</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo shopee"></div>
+                                                <span>蝦皮購物</span>
+                                            </div>
+                                            <span class="price">NT$ 1,090</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary w-full mt-md" onclick="addToCart('shoes')">
+                                        🛒 加入購物車
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 商品3：手提包 -->
+                            <div class="product-detail-card">
+                                <div class="product-header">
+                                    <div class="product-image">
+                                        👜
+                                    </div>
+                                    <div class="product-basic-info">
+                                        <h4 class="product-name">小巧藤編手提包</h4>
+                                        <p class="product-brand">Mango</p>
+                                        <div class="product-tags">
+                                            <span class="tag">輕盈</span>
+                                            <span class="tag">百搭</span>
+                                            <span class="tag">編織</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-comparison-section">
+                                    <div class="best-price">
+                                        <div class="best-price-badge">🏆 最佳價格</div>
+                                        <div class="current-price">NT$ 590</div>
+                                        <div class="original-price">原價 NT$ 790</div>
+                                    </div>
+                                    
+                                    <div class="platform-prices">
+                                        <div class="platform-price best">
+                                            <div class="platform-info">
+                                                <div class="platform-logo shopee"></div>
+                                                <span>蝦皮購物</span>
+                                            </div>
+                                            <span class="price">NT$ 590</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo pchome"></div>
+                                                <span>PChome</span>
+                                            </div>
+                                            <span class="price">NT$ 690</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo momo"></div>
+                                                <span>momo購物</span>
+                                            </div>
+                                            <span class="price">NT$ 750</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary w-full mt-md" onclick="addToCart('bag')">
+                                        🛒 加入購物車
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 商品4：太陽眼鏡 -->
+                            <div class="product-detail-card">
+                                <div class="product-header">
+                                    <div class="product-image">
+                                        🕶️
+                                    </div>
+                                    <div class="product-basic-info">
+                                        <h4 class="product-name">復古圓框太陽眼鏡</h4>
+                                        <p class="product-brand">H&M</p>
+                                        <div class="product-tags">
+                                            <span class="tag">防UV</span>
+                                            <span class="tag">復古</span>
+                                            <span class="tag">輕量</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="price-comparison-section">
+                                    <div class="best-price">
+                                        <div class="best-price-badge">🏆 最佳價格</div>
+                                        <div class="current-price">NT$ 290</div>
+                                        <div class="original-price">原價 NT$ 490</div>
+                                    </div>
+                                    
+                                    <div class="platform-prices">
+                                        <div class="platform-price best">
+                                            <div class="platform-info">
+                                                <div class="platform-logo momo"></div>
+                                                <span>momo購物</span>
+                                            </div>
+                                            <span class="price">NT$ 290</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo shopee"></div>
+                                                <span>蝦皮購物</span>
+                                            </div>
+                                            <span class="price">NT$ 350</span>
+                                        </div>
+                                        <div class="platform-price">
+                                            <div class="platform-info">
+                                                <div class="platform-logo pchome"></div>
+                                                <span>PChome</span>
+                                            </div>
+                                            <span class="price">NT$ 420</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary w-full mt-md" onclick="addToCart('sunglasses')">
+                                        🛒 加入購物車
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 預算總覽與結帳 -->
+                <div class="mt-xl">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="title-card">💰 預算總覽與結帳</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="grid grid-2 gap-8">
+                                <!-- 價格明細 -->
+                                <div>
+                                    <h4 class="font-semibold mb-md">📋 價格明細</h4>
+                                    <div class="budget-breakdown">
+                                        <div class="budget-item">
+                                            <span>清新花卉印花洋裝</span>
+                                            <span class="price">NT$ 1,190</span>
+                                        </div>
+                                        <div class="budget-item">
+                                            <span>米色編織涼鞋</span>
+                                            <span class="price">NT$ 890</span>
+                                        </div>
+                                        <div class="budget-item">
+                                            <span>小巧藤編手提包</span>
+                                            <span class="price">NT$ 590</span>
+                                        </div>
+                                        <div class="budget-item">
+                                            <span>復古圓框太陽眼鏡</span>
+                                            <span class="price">NT$ 290</span>
+                                        </div>
+                                        <div class="budget-divider"></div>
+                                        <div class="budget-total">
+                                            <span>總計</span>
+                                            <span class="total-price">NT$ 2,960</span>
+                                        </div>
+                                        <div class="savings-info">
+                                            <span class="savings-badge">💸 共省下 NT$ 1,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 結帳選項 -->
+                                <div>
+                                    <h4 class="font-semibold mb-md">🛒 購買選項</h4>
+                                    <div class="checkout-options space-y-3">
+                                        <button class="btn btn-primary w-full btn-lg" onclick="buyAll()">
+                                            🛍️ 一鍵購買全套 (NT$ 2,960)
+                                        </button>
+                                        <button class="btn btn-secondary w-full" onclick="buySelected()">
+                                            ✅ 只買已選商品
+                                        </button>
+                                        <button class="btn btn-secondary w-full" onclick="saveOutfit()">
+                                            💾 儲存穿搭方案
+                                        </button>
+                                    </div>
+
+                                    <!-- 購物提醒 -->
+                                    <div class="shopping-tips mt-lg p-4 rounded-lg" style="background: rgba(139, 92, 246, 0.1); border-left: 4px solid var(--primary-purple);">
+                                        <h5 class="font-semibold mb-sm text-sm">💡 購物小提醒</h5>
+                                        <ul class="text-sm text-secondary space-y-1">
+                                            <li>• 各平台商品會導向該平台購買頁面</li>
+                                            <li>• 價格可能因促銷活動有所變動</li>
+                                            <li>• 建議先比較運費和退換貨政策</li>
+                                            <li>• 尺寸表請參考各品牌官網</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 相似推薦 -->
+                <div class="mt-xl">
+                    <h3 class="title-card mb-lg text-center">🔄 你可能也喜歡</h3>
+                    <div class="grid grid-3 gap-6">
+                        <div class="card cursor-pointer" onclick="switchOutfit('sweet')">
+                            <div class="card-body text-center">
+                                <div style="font-size: 2rem; margin-bottom: 1rem;">👚</div>
+                                <h4 class="font-semibold mb-sm">休閒甜美</h4>
+                                <p class="text-sm text-secondary">NT$ 2,490</p>
+                            </div>
+                        </div>
+                        <div class="card cursor-pointer" onclick="switchOutfit('modern')">
+                            <div class="card-body text-center">
+                                <div style="font-size: 2rem; margin-bottom: 1rem;">🧥</div>
+                                <h4 class="font-semibold mb-sm">現代簡約</h4>
+                                <p class="text-sm text-secondary">NT$ 3,780</p>
+                            </div>
+                        </div>
+                        <div class="card cursor-pointer" onclick="regenerateOutfits()">
+                            <div class="card-body text-center">
+                                <div style="font-size: 2rem; margin-bottom: 1rem;">✨</div>
+                                <h4 class="font-semibold mb-sm">重新生成</h4>
+                                <p class="text-sm text-secondary">更多方案</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 商品詳情樣式 */
+        .outfit-preview {
+            text-align: center;
+        }
+
+        .preview-image {
+            margin-bottom: var(--space-lg);
+        }
+
+        .preview-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--text-secondary);
+        }
+
+        .preview-placeholder small {
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .analysis-content {
+            background: rgba(255, 255, 255, 0.5);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .analysis-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .analysis-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .analysis-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .weather-suggestion {
+            background: rgba(255, 255, 255, 0.5);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-sm);
+        }
+
+        .weather-temp {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+        }
+
+        .weather-desc {
+            color: var(--text-secondary);
+        }
+
+        /* 商品卡片樣式 */
+        .product-detail-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: var(--space-lg);
+            transition: all 0.3s ease;
+        }
+
+        .product-detail-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-purple);
+        }
+
+        .product-header {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .product-basic-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .product-brand {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .product-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* 比價區域 */
+        .price-comparison-section {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: var(--space-md);
+        }
+
+        .best-price {
+            text-align: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .best-price-badge {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: var(--space-sm);
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            margin-top: 0.25rem;
+        }
+
+        .platform-prices {
+            display: grid;
+            gap: 0.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .platform-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .platform-price.best {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .platform-price:hover {
+            transform: translateX(5px);
+        }
+
+        .platform-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .platform-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .platform-logo.shopee { background: linear-gradient(135deg, #FF5722 0%, #E91E63 100%); }
+        .platform-logo.momo { background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); }
+        .platform-logo.pchome { background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); }
+
+        .platform-price .price {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* 預算總覽 */
+        .budget-breakdown {
+            background: rgba(255, 255, 255, 0.5);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .budget-item:last-child {
+            border-bottom: none;
+        }
+
+        .budget-divider {
+            height: 2px;
+            background: var(--gradient-main);
+            margin: var(--space-md) 0;
+            border-radius: 1px;
+        }
+
+        .budget-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: var(--space-sm) 0;
+        }
+
+        .total-price {
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .savings-info {
+            text-align: center;
+            margin-top: var(--space-md);
+        }
+
+        .savings-badge {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .platform-prices {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        let cart = [];
+        let selectedOutfit = 'elegant';
+
+        const outfitData = {
+            elegant: {
+                title: '優雅經典穿搭方案',
+                placeholder: '👗',
+                analysis: {
+                    occasion: '戶外婚禮、下午茶聚會',
+                    style: '優雅浪漫、不搶風頭',
+                    fit: 'A字版型修飾腰線',
+                    material: '透氣棉質、防皺處理'
+                }
+            },
+            sweet: {
+                title: '休閒甜美穿搭方案',
+                placeholder: '👚',
+                analysis: {
+                    occasion: '休閒聚會、咖啡約會',
+                    style: '甜美可愛、青春活力',
+                    fit: '寬鬆舒適、顯腿長',
+                    material: '柔軟針織、親膚棉質'
+                }
+            },
+            modern: {
+                title: '現代簡約穿搭方案',
+                placeholder: '🧥',
+                analysis: {
+                    occasion: '商務場合、都會聚會',
+                    style: '簡約俐落、現代感',
+                    fit: '修身剪裁、展現線條',
+                    material: '高級面料、抗皺免燙'
+                }
+            }
+        };
+
+        function addToCart(productId) {
+            if (!cart.includes(productId)) {
+                cart.push(productId);
+                
+                // 視覺反饋
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = '✅ 已加入';
+                button.style.background = 'var(--success)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 1500);
+            }
+        }
+
+        function buyAll() {
+            // 模擬購買全套
+            if (confirm('確定要購買整套穿搭嗎？總金額 NT$ 2,960')) {
+                window.location.href = 'checkout.html?type=all&outfit=' + selectedOutfit;
+            }
+        }
+
+        function buySelected() {
+            if (cart.length === 0) {
+                alert('請先選擇要購買的商品');
+                return;
+            }
+            
+            window.location.href = 'checkout.html?type=selected&items=' + cart.join(',');
+        }
+
+        function saveOutfit() {
+            const outfitData = {
+                outfit: selectedOutfit,
+                timestamp: new Date().toISOString(),
+                items: ['dress', 'shoes', 'bag', 'sunglasses']
+            };
+            
+            localStorage.setItem('savedOutfit', JSON.stringify(outfitData));
+            
+            alert('穿搭方案已儲存！你可以隨時回來查看。');
+        }
+
+        function switchOutfit(outfitId) {
+            localStorage.setItem('selectedOutfit', outfitId);
+            window.location.reload();
+        }
+
+        function regenerateOutfits() {
+            if (confirm('確定要重新生成穿搭方案嗎？')) {
+                window.location.href = 'loading.html';
+            }
+        }
+
+        // 頁面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 獲取選擇的穿搭方案
+            selectedOutfit = localStorage.getItem('selectedOutfit') || 'elegant';
+            
+            if (!localStorage.getItem('stylingInput')) {
+                window.location.href = 'input.html';
+                return;
+            }
+
+            // 更新頁面內容
+            const outfit = outfitData[selectedOutfit];
+            if (outfit) {
+                document.getElementById('outfitTitle').textContent = outfit.title;
+                document.getElementById('previewPlaceholder').innerHTML = 
+                    outfit.placeholder + '<br><small>AI生成的穿搭效果圖</small>';
+                
+                // 更新分析內容
+                const analysisContent = document.getElementById('analysisContent');
+                analysisContent.innerHTML = `
+                    <div class="analysis-item">
+                        <span class="analysis-label">適合場合：</span>
+                        <span class="analysis-value">${outfit.analysis.occasion}</span>
+                    </div>
+                    <div class="analysis-item">
+                        <span class="analysis-label">風格特色：</span>
+                        <span class="analysis-value">${outfit.analysis.style}</span>
+                    </div>
+                    <div class="analysis-item">
+                        <span class="analysis-label">身形建議：</span>
+                        <span class="analysis-value">${outfit.analysis.fit}</span>
+                    </div>
+                    <div class="analysis-item">
+                        <span class="analysis-label">材質推薦：</span>
+                        <span class="analysis-value">${outfit.analysis.material}</span>
+                    </div>
+                `;
+            }
+
+            // 添加載入動畫
+            const cards = document.querySelectorAll('.product-detail-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>

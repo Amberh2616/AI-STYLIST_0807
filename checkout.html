@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結帳付款 - AI Style Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="bg-pattern"></div>
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+
+        <!-- 導航欄 -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="logo">✨ AI Style Advisor</div>
+                    <ul class="nav-links">
+                        <li><a href="details.html" class="nav-link">← 返回商品詳情</a></li>
+                        <li><span class="text-primary font-semibold">結帳付款</span></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要內容 -->
+        <div class="pt-24 pb-20">
+            <div class="container">
+                <!-- 頁面標題 -->
+                <div class="text-center mb-xl">
+                    <h1 class="title-section mb-md">🛍️ 購物車結帳</h1>
+                    <p class="text-secondary text-lg">確認您的訂單並選擇付款方式</p>
+                </div>
+
+                <!-- 進度條 -->
+                <div class="mb-xl container-narrow">
+                    <div class="flex justify-between items-center mb-sm text-sm text-secondary">
+                        <span>購物車結帳</span>
+                        <span>最後一步！</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: rgba(139, 92, 246, 0.2); border-radius: 4px;">
+                        <div style="width: 100%; height: 100%; background: var(--gradient-main); border-radius: 4px;"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-2 gap-8">
+                    <!-- 左側：訂單詳情 -->
+                    <div>
+                        <h3 class="title-card mb-lg">📦 訂單詳情</h3>
+                        
+                        <!-- 穿搭資訊 -->
+                        <div class="card mb-lg">
+                            <div class="card-header">
+                                <h4 class="font-semibold">✨ 你的專屬穿搭方案</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="outfit-summary">
+                                    <div class="flex items-center gap-4 mb-md">
+                                        <div class="outfit-preview-small">👗</div>
+                                        <div>
+                                            <h5 class="font-semibold" id="checkoutOutfitTitle">優雅經典穿搭方案</h5>
+                                            <p class="text-sm text-secondary">適合戶外婚禮的優雅造型</p>
+                                        </div>
+                                    </div>
+                                    <div class="outfit-tags-mini">
+                                        <span class="tag-mini">透氣</span>
+                                        <span class="tag-mini">修身</span>
+                                        <span class="tag-mini">防曬</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 商品列表 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="font-semibold">🛒 購買清單</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="checkout-items" id="checkoutItems">
+                                    <!-- 動態填充購買項目 -->
+                                </div>
+                                
+                                <!-- 優惠券 -->
+                                <div class="mt-lg p-4 rounded-lg" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <span class="font-semibold text-success">🎁 首次購買優惠</span>
+                                            <p class="text-sm text-secondary mt-1">滿NT$ 2,000享9折優惠</p>
+                                        </div>
+                                        <span class="text-success font-semibold">-NT$ 296</span>
+                                    </div>
+                                </div>
+
+                                <!-- 總計 -->
+                                <div class="border-t border-white border-opacity-30 mt-lg pt-lg">
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between text-sm">
+                                            <span>商品小計</span>
+                                            <span id="subtotal">NT$ 2,960</span>
+                                        </div>
+                                        <div class="flex justify-between text-sm text-success">
+                                            <span>首購優惠</span>
+                                            <span>-NT$ 296</span>
+                                        </div>
+                                        <div class="flex justify-between text-sm">
+                                            <span>運費</span>
+                                            <span class="text-success">免運費</span>
+                                        </div>
+                                        <div class="border-t border-white border-opacity-30 pt-3">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-semibold text-lg">總計</span>
+                                                <span class="font-bold text-xl" style="background: var(--gradient-main); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="totalAmount">NT$ 2,664</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右側：付款資訊 -->
+                    <div>
+                        <h3 class="title-card mb-lg">💳 付款資訊</h3>
+                        
+                        <!-- 收件資訊 -->
+                        <div class="card mb-lg">
+                            <div class="card-header">
+                                <h4 class="font-semibold">📋 收件資訊</h4>
+                            </div>
+                            <div class="card-body">
+                                <form id="checkoutForm">
+                                    <div class="form-group">
+                                        <label class="form-label">收件人姓名</label>
+                                        <input type="text" class="form-input" placeholder="請輸入收件人姓名" id="recipientName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">聯絡電話</label>
+                                        <input type="tel" class="form-input" placeholder="09xxxxxxxx" id="phone" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">收件地址</label>
+                                        <textarea class="form-textarea" placeholder="請輸入完整收件地址" id="address" rows="3" required></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- 付款方式 -->
+                        <div class="card mb-lg">
+                            <div class="card-header">
+                                <h4 class="font-semibold">💰 付款方式</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="payment-methods">
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="credit" checked>
+                                        <div class="payment-info">
+                                            <div class="payment-icon">💳</div>
+                                            <div>
+                                                <div class="font-semibold">信用卡付款</div>
+                                                <div class="text-sm text-secondary">支援Visa、Mastercard、JCB</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="atm">
+                                        <div class="payment-info">
+                                            <div class="payment-icon">🏦</div>
+                                            <div>
+                                                <div class="font-semibold">ATM轉帳</div>
+                                                <div class="text-sm text-secondary">虛擬帳號，3天內完成轉帳</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="cod">
+                                        <div class="payment-info">
+                                            <div class="payment-icon">🚚</div>
+                                            <div>
+                                                <div class="font-semibold">貨到付款</div>
+                                                <div class="text-sm text-secondary">收件時以現金付款</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="linepay">
+                                        <div class="payment-info">
+                                            <div class="payment-icon">📱</div>
+                                            <div>
+                                                <div class="font-semibold">LINE Pay</div>
+                                                <div class="text-sm text-secondary">使用LINE Pay快速付款</div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 注意事項 -->
+                        <div class="card mb-lg">
+                            <div class="card-header">
+                                <h4 class="font-semibold">⚠️ 購買須知</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-sm text-secondary space-y-2">
+                                    <p>• 商品將分別從各平台寄出，到貨時間可能不同</p>
+                                    <p>• 退換貨政策依各平台規定辦理</p>
+                                    <p>• 尺寸不合可依各品牌政策辦理換貨</p>
+                                    <p>• 價格可能因促銷活動調整，以下單時為準</p>
+                                    <p>• 若商品缺貨將主動聯繫提供替代方案</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 結帳按鈕 -->
+                        <div class="space-y-3">
+                            <button class="btn btn-primary w-full btn-xl" onclick="processCheckout()">
+                                🛍️ 確認訂單並付款 (NT$ 2,664)
+                            </button>
+                            <button class="btn btn-secondary w-full" onclick="goBack()">
+                                ← 返回修改商品
+                            </button>
+                        </div>
+
+                        <!-- 安全提示 -->
+                        <div class="mt-lg text-center">
+                            <p class="text-sm text-secondary">
+                                🔐 您的付款資訊受SSL加密保護<br>
+                                我們絕不儲存您的信用卡資訊
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 結帳頁面樣式 */
+        .outfit-preview-small {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .outfit-tags-mini {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag-mini {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-purple);
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .checkout-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .item-icon {
+            font-size: 1.2rem;
+        }
+
+        .item-details h5 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-details p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .item-price {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* 付款方式樣式 */
+        .payment-methods {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .payment-option input[type="radio"] {
+            margin: 0;
+        }
+
+        .payment-option input[type="radio"]:checked + .payment-info {
+            color: var(--primary-purple);
+        }
+
+        .payment-option:has(input[type="radio"]:checked) {
+            border-color: var(--primary-purple);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .payment-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        .payment-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                gap: 0.5rem;
+            }
+            
+            .payment-option {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+
+    <script>
+        let checkoutData = {
+            type: 'all',
+            outfit: 'elegant',
+            items: [],
+            total: 2664
+        };
+
+        const itemsData = {
+            dress: { name: '清新花卉印花洋裝', price: 1190, icon: '👗', brand: 'ZARA' },
+            shoes: { name: '米色編織涼鞋', price: 890, icon: '👠', brand: 'Charles & Keith' },
+            bag: { name: '小巧藤編手提包', price: 590, icon: '👜', brand: 'Mango' },
+            sunglasses: { name: '復古圓框太陽眼鏡', price: 290, icon: '🕶️', brand: 'H&M' }
+        };
+
+        function loadCheckoutData() {
+            // 從URL參數獲取結帳類型和數據
+            const urlParams = new URLSearchParams(window.location.search);
+            checkoutData.type = urlParams.get('type') || 'all';
+            checkoutData.outfit = urlParams.get('outfit') || 'elegant';
+            
+            if (checkoutData.type === 'selected') {
+                const itemsParam = urlParams.get('items');
+                checkoutData.items = itemsParam ? itemsParam.split(',') : [];
+            } else {
+                checkoutData.items = ['dress', 'shoes', 'bag', 'sunglasses'];
+            }
+
+            // 更新購物車內容
+            updateCheckoutItems();
+            updateTotals();
+        }
+
+        function updateCheckoutItems() {
+            const container = document.getElementById('checkoutItems');
+            let html = '';
+            
+            checkoutData.items.forEach(itemId => {
+                const item = itemsData[itemId];
+                if (item) {
+                    html += `
+                        <div class="checkout-item">
+                            <div class="item-info">
+                                <div class="item-icon">${item.icon}</div>
+                                <div class="item-details">
+                                    <h5>${item.name}</h5>
+                                    <p>${item.brand}</p>
+                                </div>
+                            </div>
+                            <div class="item-price">NT$ ${item.price.toLocaleString()}</div>
+                        </div>
+                    `;
+                }
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function updateTotals() {
+            const subtotal = checkoutData.items.reduce((sum, itemId) => {
+                const item = itemsData[itemId];
+                return sum + (item ? item.price : 0);
+            }, 0);
+            
+            const discount = Math.floor(subtotal * 0.1); // 10% 折扣
+            const total = subtotal - discount;
+            
+            document.getElementById('subtotal').textContent = `NT$ ${subtotal.toLocaleString()}`;
+            document.getElementById('totalAmount').textContent = `NT$ ${total.toLocaleString()}`;
+            
+            checkoutData.total = total;
+            
+            // 更新結帳按鈕
+            const checkoutBtn = document.querySelector('.btn-primary.btn-xl');
+            checkoutBtn.innerHTML = `🛍️ 確認訂單並付款 (NT$ ${total.toLocaleString()})`;
+        }
+
+        function processCheckout() {
+            // 驗證表單
+            const form = document.getElementById('checkoutForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const recipientName = document.getElementById('recipientName').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            if (!recipientName || !phone || !address) {
+                alert('請完整填寫收件資訊');
+                return;
+            }
+
+            // 儲存訂單資料
+            const orderData = {
+                orderNumber: 'AS' + Date.now(),
+                outfit: checkoutData.outfit,
+                items: checkoutData.items,
+                total: checkoutData.total,
+                recipient: {
+                    name: recipientName,
+                    phone: phone,
+                    address: address
+                },
+                paymentMethod: paymentMethod,
+                timestamp: new Date().toISOString(),
+                status: 'confirmed'
+            };
+
+            localStorage.setItem('currentOrder', JSON.stringify(orderData));
+
+            // 模擬付款處理
+            const btn = document.querySelector('.btn-primary.btn-xl');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '🔄 處理中...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                window.location.href = 'success.html';
+            }, 2000);
+        }
+
+        function goBack() {
+            window.location.href = 'details.html';
+        }
+
+        // 頁面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 檢查是否有有效的結帳資料
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.get('type')) {
+                window.location.href = 'details.html';
+                return;
+            }
+
+            loadCheckoutData();
+
+            // 載入動畫
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

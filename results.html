@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>穿搭方案選擇 - AI Style Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="bg-pattern"></div>
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+
+        <!-- 導航欄 -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="logo">✨ AI Style Advisor</div>
+                    <ul class="nav-links">
+                        <li><a href="input.html" class="nav-link">← 重新輸入</a></li>
+                        <li><span class="text-primary font-semibold">步驟 3/4 - 選擇方案</span></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要內容 -->
+        <div class="pt-24 pb-20">
+            <div class="container">
+                <div class="text-center mb-xl">
+                    <h1 class="title-section mb-md">為你精心設計的穿搭方案</h1>
+                    <p class="text-secondary text-lg">AI為你生成了5個專屬穿搭方案，請選擇你最喜歡的一個</p>
+                </div>
+
+                <!-- 進度條 -->
+                <div class="mb-xl container-narrow">
+                    <div class="flex justify-between items-center mb-sm text-sm text-secondary">
+                        <span>選擇穿搭方案</span>
+                        <span>75%</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: rgba(139, 92, 246, 0.2); border-radius: 4px;">
+                        <div style="width: 75%; height: 100%; background: var(--gradient-main); border-radius: 4px; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+
+                <!-- 穿搭方案網格 -->
+                <div class="grid grid-3 gap-6 mb-xl">
+                    <!-- 方案 1 - 優雅經典 -->
+                    <div class="outfit-card" data-outfit="elegant" onclick="selectOutfit('elegant')">
+                        <div class="outfit-header">
+                            <div class="outfit-badge">🌟 推薦</div>
+                            <h3 class="outfit-title">優雅經典</h3>
+                        </div>
+                        <div class="outfit-image">
+                            <div class="outfit-placeholder">
+                                👗<br>
+                                <small>AI生成穿搭圖</small>
+                            </div>
+                        </div>
+                        <div class="outfit-info">
+                            <div class="outfit-description">
+                                清新花卉洋裝搭配米色涼鞋，適合戶外婚禮的優雅造型
+                            </div>
+                            <div class="outfit-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">風格：</span>
+                                    <span class="detail-value">優雅、浪漫</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">適合場合：</span>
+                                    <span class="detail-value">婚禮、聚會</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">預估價格：</span>
+                                    <span class="detail-value price">NT$ 2,960</span>
+                                </div>
+                            </div>
+                            <div class="outfit-tags">
+                                <span class="tag">透氣</span>
+                                <span class="tag">修身</span>
+                                <span class="tag">防曬</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 方案 2 - 休閒甜美 -->
+                    <div class="outfit-card" data-outfit="sweet" onclick="selectOutfit('sweet')">
+                        <div class="outfit-header">
+                            <h3 class="outfit-title">休閒甜美</h3>
+                        </div>
+                        <div class="outfit-image">
+                            <div class="outfit-placeholder">
+                                👚<br>
+                                <small>AI生成穿搭圖</small>
+                            </div>
+                        </div>
+                        <div class="outfit-info">
+                            <div class="outfit-description">
+                                粉色上衣配白色半身裙，甜美可愛的度假風格
+                            </div>
+                            <div class="outfit-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">風格：</span>
+                                    <span class="detail-value">甜美、活潑</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">適合場合：</span>
+                                    <span class="detail-value">休閒、約會</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">預估價格：</span>
+                                    <span class="detail-value price">NT$ 2,490</span>
+                                </div>
+                            </div>
+                            <div class="outfit-tags">
+                                <span class="tag">舒適</span>
+                                <span class="tag">清新</span>
+                                <span class="tag">顯瘦</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 方案 3 - 現代簡約 -->
+                    <div class="outfit-card" data-outfit="modern" onclick="selectOutfit('modern')">
+                        <div class="outfit-header">
+                            <h3 class="outfit-title">現代簡約</h3>
+                        </div>
+                        <div class="outfit-image">
+                            <div class="outfit-placeholder">
+                                🧥<br>
+                                <small>AI生成穿搭圖</small>
+                            </div>
+                        </div>
+                        <div class="outfit-info">
+                            <div class="outfit-description">
+                                簡約連身裙配輕薄外套，現代都會女性的選擇
+                            </div>
+                            <div class="outfit-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">風格：</span>
+                                    <span class="detail-value">簡約、現代</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">適合場合：</span>
+                                    <span class="detail-value">都會、商務</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">預估價格：</span>
+                                    <span class="detail-value price">NT$ 3,780</span>
+                                </div>
+                            </div>
+                            <div class="outfit-tags">
+                                <span class="tag">百搭</span>
+                                <span class="tag">簡約</span>
+                                <span class="tag">質感</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 方案 4 - 復古風情 -->
+                    <div class="outfit-card" data-outfit="vintage" onclick="selectOutfit('vintage')">
+                        <div class="outfit-header">
+                            <h3 class="outfit-title">復古風情</h3>
+                        </div>
+                        <div class="outfit-image">
+                            <div class="outfit-placeholder">
+                                🎀<br>
+                                <small>AI生成穿搭圖</small>
+                            </div>
+                        </div>
+                        <div class="outfit-info">
+                            <div class="outfit-description">
+                                復古波點洋裝配經典包包，優雅的復古魅力
+                            </div>
+                            <div class="outfit-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">風格：</span>
+                                    <span class="detail-value">復古、典雅</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">適合場合：</span>
+                                    <span class="detail-value">茶會、文藝</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">預估價格：</span>
+                                    <span class="detail-value price">NT$ 3,260</span>
+                                </div>
+                            </div>
+                            <div class="outfit-tags">
+                                <span class="tag">復古</span>
+                                <span class="tag">獨特</span>
+                                <span class="tag">典雅</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 方案 5 - 活力運動 -->
+                    <div class="outfit-card" data-outfit="sporty" onclick="selectOutfit('sporty')">
+                        <div class="outfit-header">
+                            <h3 class="outfit-title">活力運動</h3>
+                        </div>
+                        <div class="outfit-image">
+                            <div class="outfit-placeholder">
+                                👟<br>
+                                <small>AI生成穿搭圖</small>
+                            </div>
+                        </div>
+                        <div class="outfit-info">
+                            <div class="outfit-description">
+                                運動風洋裝配小白鞋，舒適又時尚的活力造型
+                            </div>
+                            <div class="outfit-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">風格：</span>
+                                    <span class="detail-value">運動、活力</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">適合場合：</span>
+                                    <span class="detail-value">運動、休閒</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">預估價格：</span>
+                                    <span class="detail-value price">NT$ 2,180</span>
+                                </div>
+                            </div>
+                            <div class="outfit-tags">
+                                <span class="tag">舒適</span>
+                                <span class="tag">透氣</span>
+                                <span class="tag">活力</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 選擇提示 -->
+                <div class="text-center mb-xl" id="selectionHint">
+                    <div class="card p-6" style="max-width: 600px; margin: 0 auto;">
+                        <h3 class="font-semibold mb-md">👆 請選擇你喜歡的穿搭方案</h3>
+                        <p class="text-secondary">點擊任一方案卡片即可查看詳細的商品清單和價格比較</p>
+                    </div>
+                </div>
+
+                <!-- 已選擇的提示 -->
+                <div class="text-center mb-xl hidden" id="selectedHint">
+                    <div class="card p-6" style="max-width: 600px; margin: 0 auto; border-color: var(--success);">
+                        <h3 class="font-semibold mb-md text-success">✅ 已選擇方案</h3>
+                        <p class="text-secondary" id="selectedDescription">你選擇了「優雅經典」方案，點擊下方按鈕查看詳細商品清單</p>
+                    </div>
+                </div>
+
+                <!-- 操作按鈕 -->
+                <div class="flex justify-center gap-4">
+                    <button class="btn btn-secondary" onclick="regenerateOutfits()">
+                        🔄 重新生成方案
+                    </button>
+                    <button class="btn btn-primary btn-lg hidden" id="viewDetailsBtn" onclick="viewDetails()">
+                        👀 查看商品詳情
+                    </button>
+                </div>
+
+                <!-- 個性化建議 -->
+                <div class="mt-xl">
+                    <div class="grid grid-2 gap-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="font-semibold mb-md">🎯 AI個性化建議</h4>
+                                <div class="space-y-2 text-sm text-secondary">
+                                    <p>• 根據你的身形分析，建議選擇A字版型增加腰線</p>
+                                    <p>• 戶外場合建議選擇透氣材質，避免悶熱</p>
+                                    <p>• 草地婚禮建議避免細跟高跟鞋，選擇楔形或粗跟</p>
+                                    <p>• 25度氣溫適合薄款長袖或短袖配輕薄外套</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="font-semibold mb-md">💰 價格範圍分析</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span>經濟實惠</span>
+                                        <span class="price">NT$ 2,000 - 2,500</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-sm font-semibold" style="color: var(--primary-purple);">
+                                        <span>推薦範圍</span>
+                                        <span class="price">NT$ 2,500 - 3,500</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span>精品級別</span>
+                                        <span class="price">NT$ 3,500+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 穿搭卡片樣式 */
+        .outfit-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-xl);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .outfit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .outfit-card.selected {
+            border-color: var(--success);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .outfit-header {
+            padding: var(--space-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .outfit-badge {
+            position: absolute;
+            top: -2px;
+            right: var(--space-md);
+            background: var(--gradient-main);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0 0 12px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .outfit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .outfit-image {
+            height: 200px;
+            background: linear-gradient(135deg, #F3E8FF 0%, #FCE7F3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outfit-placeholder {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .outfit-placeholder small {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .outfit-info {
+            padding: var(--space-md);
+        }
+
+        .outfit-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-md);
+            line-height: 1.5;
+        }
+
+        .outfit-details {
+            margin-bottom: var(--space-md);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .detail-value.price {
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .outfit-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-purple);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* 選中狀態 */
+        .outfit-card.selected .tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .outfit-card {
+                margin-bottom: var(--space-lg);
+            }
+        }
+
+        /* 成功色彩 */
+        .text-success {
+            color: var(--success);
+        }
+    </style>
+
+    <script>
+        let selectedOutfit = null;
+
+        const outfitData = {
+            elegant: {
+                title: '優雅經典',
+                description: '清新花卉洋裝搭配米色涼鞋，適合戶外婚禮的優雅造型'
+            },
+            sweet: {
+                title: '休閒甜美',
+                description: '粉色上衣配白色半身裙，甜美可愛的度假風格'
+            },
+            modern: {
+                title: '現代簡約',
+                description: '簡約連身裙配輕薄外套，現代都會女性的選擇'
+            },
+            vintage: {
+                title: '復古風情',
+                description: '復古波點洋裝配經典包包，優雅的復古魅力'
+            },
+            sporty: {
+                title: '活力運動',
+                description: '運動風洋裝配小白鞋，舒適又時尚的活力造型'
+            }
+        };
+
+        function selectOutfit(outfitId) {
+            // 移除之前的選擇
+            document.querySelectorAll('.outfit-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // 選擇當前卡片
+            const selectedCard = document.querySelector(`[data-outfit="${outfitId}"]`);
+            selectedCard.classList.add('selected');
+
+            selectedOutfit = outfitId;
+
+            // 更新UI
+            document.getElementById('selectionHint').classList.add('hidden');
+            document.getElementById('selectedHint').classList.remove('hidden');
+            document.getElementById('viewDetailsBtn').classList.remove('hidden');
+
+            // 更新描述
+            const outfit = outfitData[outfitId];
+            document.getElementById('selectedDescription').textContent = 
+                `你選擇了「${outfit.title}」方案，點擊下方按鈕查看詳細商品清單`;
+
+            // 滾動到按鈕區域
+            document.getElementById('selectedHint').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
+
+        function viewDetails() {
+            if (!selectedOutfit) {
+                alert('請先選擇一個穿搭方案');
+                return;
+            }
+
+            // 儲存選擇的方案
+            localStorage.setItem('selectedOutfit', selectedOutfit);
+            
+            // 跳轉到詳情頁面
+            window.location.href = 'details.html';
+        }
+
+        function regenerateOutfits() {
+            if (confirm('確定要重新生成穿搭方案嗎？這將會返回到載入頁面。')) {
+                window.location.href = 'loading.html';
+            }
+        }
+
+        // 頁面載入動畫
+        document.addEventListener('DOMContentLoaded', function() {
+            // 檢查是否有輸入資料
+            const inputData = localStorage.getItem('stylingInput');
+            if (!inputData) {
+                window.location.href = 'input.html';
+                return;
+            }
+
+            // 為卡片添加載入動畫
+            const cards = document.querySelectorAll('.outfit-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI正在為你設計穿搭 - AI Style Advisor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="bg-pattern"></div>
+        <div class="floating-elements">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+
+        <!-- 導航欄 -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="logo">✨ AI Style Advisor</div>
+                    <ul class="nav-links">
+                        <li><span class="text-primary font-semibold">步驟 2/4 - AI分析中</span></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主要內容 -->
+        <div class="min-h-screen flex items-center justify-center">
+            <div class="container container-narrow text-center">
+                
+                <!-- 主要Loading動畫區域 -->
+                <div class="card p-12 mb-8">
+                    <!-- 進度條 -->
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center mb-2 text-sm text-secondary">
+                            <span>AI分析中</span>
+                            <span id="progressText">0%</span>
+                        </div>
+                        <div style="width: 100%; height: 12px; background: rgba(139, 92, 246, 0.2); border-radius: 6px; overflow: hidden;">
+                            <div id="progressBar" style="width: 0%; height: 100%; background: var(--gradient-main); border-radius: 6px; transition: width 0.5s ease;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 主要動畫 -->
+                    <div class="mb-8">
+                        <div class="ai-brain-animation mb-6">
+                            <!-- AI大腦動畫 -->
+                            <div style="position: relative; width: 120px; height: 120px; margin: 0 auto;">
+                                <div class="brain-core"></div>
+                                <div class="brain-wave wave-1"></div>
+                                <div class="brain-wave wave-2"></div>
+                                <div class="brain-wave wave-3"></div>
+                                <div class="brain-particles">
+                                    <div class="particle particle-1"></div>
+                                    <div class="particle particle-2"></div>
+                                    <div class="particle particle-3"></div>
+                                    <div class="particle particle-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h2 class="title-section mb-4" id="loadingTitle">AI正在分析你的需求...</h2>
+                        <p class="text-secondary text-lg" id="loadingSubtitle">請稍候，我們正在為你生成專屬穿搭方案</p>
+                    </div>
+
+                    <!-- 動態狀態文字 -->
+                    <div class="loading-steps">
+                        <div class="step-item" id="step1">
+                            <span class="step-icon">🎭</span>
+                            <span class="step-text">解析場合需求</span>
+                            <span class="step-status"></span>
+                        </div>
+                        <div class="step-item" id="step2">
+                            <span class="step-icon">📸</span>
+                            <span class="step-text">分析身形特徵</span>
+                            <span class="step-status"></span>
+                        </div>
+                        <div class="step-item" id="step3">
+                            <span class="step-icon">🎨</span>
+                            <span class="step-text">生成穿搭方案</span>
+                            <span class="step-status"></span>
+                        </div>
+                        <div class="step-item" id="step4">
+                            <span class="step-icon">🛍️</span>
+                            <span class="step-text">搜尋優惠商品</span>
+                            <span class="step-status"></span>
+                        </div>
+                        <div class="step-item" id="step5">
+                            <span class="step-icon">💰</span>
+                            <span class="step-text">比較平台價格</span>
+                            <span class="step-status"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 趣味小知識 -->
+                <div class="card p-6">
+                    <h3 class="font-semibold mb-3">💡 穿搭小知識</h3>
+                    <p class="text-secondary" id="fashionTip">顏色搭配是穿搭的關鍵，相近色系能營造和諧感，對比色系則能增加視覺亮點。</p>
+                </div>
+
+                <!-- 技術說明 -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-light">
+                        我們使用先進的AI技術，包含自然語言處理、電腦視覺和深度學習，<br>
+                        為你提供最精準的穿搭建議
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Loading專用樣式 */
+        .ai-brain-animation {
+            position: relative;
+        }
+
+        .brain-core {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-main);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-core 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .brain-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            animation: wave-expand 3s ease-out infinite;
+        }
+
+        .wave-1 {
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .wave-2 {
+            width: 100px;
+            height: 100px;
+            animation-delay: 1s;
+        }
+
+        .wave-3 {
+            width: 120px;
+            height: 120px;
+            animation-delay: 2s;
+        }
+
+        .brain-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--gradient-light);
+            border-radius: 50%;
+            animation: particle-float 4s ease-in-out infinite;
+        }
+
+        .particle-1 {
+            top: 20%;
+            left: 80%;
+            animation-delay: 0s;
+        }
+
+        .particle-2 {
+            top: 80%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .particle-3 {
+            top: 20%;
+            right: 80%;
+            animation-delay: 2s;
+        }
+
+        .particle-4 {
+            bottom: 20%;
+            right: 20%;
+            animation-delay: 3s;
+        }
+
+        @keyframes pulse-core {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.1); 
+                box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+            }
+        }
+
+        @keyframes wave-expand {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+        }
+
+        @keyframes particle-float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* 步驟樣式 */
+        .loading-steps {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.5;
+            transition: all 0.5s ease;
+        }
+
+        .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .step-item.active {
+            opacity: 1;
+            transform: translateX(10px);
+        }
+
+        .step-item.completed {
+            opacity: 0.8;
+        }
+
+        .step-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .step-text {
+            flex: 1;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .step-status {
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-item.active .step-status::after {
+            content: '⏳';
+            color: var(--warning);
+        }
+
+        .step-item.completed .step-status::after {
+            content: '✅';
+            color: var(--success);
+        }
+
+        /* 提示動畫 */
+        .tip-fade {
+            animation: tipFade 0.5s ease-in-out;
+        }
+
+        @keyframes tipFade {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <script>
+        // 載入進度模擬
+        let progress = 0;
+        let currentStep = 0;
+        const totalDuration = 8000; // 8秒總時長
+        const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
+        const stepDurations = [1500, 2000, 2500, 1500, 500]; // 每步驟時長
+
+        // 穿搭小知識
+        const fashionTips = [
+            '顏色搭配是穿搭的關鍵，相近色系能營造和諧感，對比色系則能增加視覺亮點。',
+            '選擇合適的配件能提升整體造型的精緻度，一個好的包包或首飾就能畫龍點睛。',
+            '服裝的版型比品牌更重要，合身的廉價服飾比昂貴但不合身的名牌更好看。',
+            '混搭不同材質能增加層次感，比如絲綢搭配牛仔、皮革搭配針織等。',
+            '穿搭的重點是展現個人風格，而不是盲目跟隨流行趨勢。'
+        ];
+
+        let tipIndex = 0;
+
+        function updateProgress() {
+            if (progress < 100) {
+                progress += 1;
+                document.getElementById('progressBar').style.width = progress + '%';
+                document.getElementById('progressText').textContent = progress + '%';
+                
+                // 更新步驟狀態
+                updateSteps();
+                
+                setTimeout(updateProgress, totalDuration / 100);
+            } else {
+                // 載入完成，跳轉到結果頁面
+                setTimeout(() => {
+                    window.location.href = 'results.html';
+                }, 1000);
+            }
+        }
+
+        function updateSteps() {
+            let currentTime = (progress / 100) * totalDuration;
+            let accumulatedTime = 0;
+            
+            for (let i = 0; i < steps.length; i++) {
+                accumulatedTime += stepDurations[i];
+                const stepElement = document.getElementById(steps[i]);
+                
+                if (currentTime >= accumulatedTime) {
+                    stepElement.classList.add('completed');
+                    stepElement.classList.remove('active');
+                } else if (currentTime >= accumulatedTime - stepDurations[i]) {
+                    stepElement.classList.add('active');
+                    stepElement.classList.remove('completed');
+                    
+                    // 更新標題
+                    updateLoadingText(i);
+                } else {
+                    stepElement.classList.remove('active', 'completed');
+                }
+            }
+        }
+
+        function updateLoadingText(stepIndex) {
+            const titles = [
+                'AI正在解析你的需求...',
+                'AI正在分析你的身形...',
+                '正在生成專屬穿搭方案...',
+                '正在搜尋最適合的商品...',
+                '正在比較各平台價格...'
+            ];
+
+            const subtitles = [
+                '理解場合需求和個人偏好',
+                '分析身形比例和特徵',
+                '運用深度學習生成穿搭',
+                '從萬件商品中精選最佳',
+                '為你找到最優惠的價格'
+            ];
+
+            if (stepIndex < titles.length) {
+                document.getElementById('loadingTitle').textContent = titles[stepIndex];
+                document.getElementById('loadingSubtitle').textContent = subtitles[stepIndex];
+            }
+        }
+
+        function rotateTips() {
+            const tipElement = document.getElementById('fashionTip');
+            tipElement.classList.add('tip-fade');
+            
+            setTimeout(() => {
+                tipElement.textContent = fashionTips[tipIndex];
+                tipIndex = (tipIndex + 1) % fashionTips.length;
+                tipElement.classList.remove('tip-fade');
+            }, 250);
+        }
+
+        // 開始載入動畫
+        document.addEventListener('DOMContentLoaded', function() {
+            // 檢查是否有輸入資料
+            const inputData = localStorage.getItem('stylingInput');
+            if (!inputData) {
+                // 如果沒有輸入資料，返回輸入頁面
+                window.location.href = 'input.html';
+                return;
+            }
+
+            // 開始進度動畫
+            setTimeout(updateProgress, 500);
+            
+            // 定期更換小知識
+            setInterval(rotateTips, 3000);
+        });
+    </script>
+</body>
+</html>
